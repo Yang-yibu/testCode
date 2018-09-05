@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-wep-app-capable" content="yes">
+    <meta name="apple-mobile-wep-app-status-par-style" content="black">
+    <title>Document</title>
+
+    <script>
+        // 侯
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 32 * (clientWidth / 750) + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+
+        // tabBao
+        !function (e, t) {
+            var n = t.documentElement
+                , d = e.devicePixelRatio || 1;
+
+            function i() {
+                var e = n.clientWidth / 3.75;
+                n.style.fontSize = e + "px"
+            }
+            if (
+                function e() {
+                    t.body ? t.body.style.fontSize = "16px" : t.addEventListener("DOMContentLoaded", e)
+                }(),
+                i(),
+                e.addEventListener("resize", i),
+                e.addEventListener("pageshow", function (e) {
+                e.persisted && i()
+            }), d >= 2) {
+                var o = t.createElement("body")
+                    , a = t.createElement("div");
+                a.style.border = ".5px solid transparent",
+                    o.appendChild(a),
+                    n.appendChild(o),
+                    1 === a.offsetHeight && n.classList.add("hairlines"),
+                    n.removeChild(o)
+            }
+        }(window, document)
+    </script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 2rem;
+            height: 2rem;
+            background: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">hah</div>
+
+</body>
+
+</html>

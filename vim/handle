@@ -1,0 +1,16 @@
+
+调换字符
+
+Pracatica lvim  
+
+line two
+line three
+line one
+
+
+
+
+collection = getCollection();
+process[collection, target];
+
+var foo = "method(" + argument1 + "," + argument2 + ")";

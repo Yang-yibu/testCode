@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="any" mask="" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试布局</title>
+  <script src="../lib/vconsole.min.js"></script>
+  <style>
+    .img-box {
+      width: 159px
+    }
+    
+    .img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="audio" src="../music/aa.mp3" controls></audio>
+  <div class="container">
+    <div class="img-box">
+      <img class="img" src="https://yxh.126net.com/poster_res/tpl/image/birthday/5.png" alt="" />
+    </div>
+  </div>
+</body>
+
+<script>
+  window.onload = function() {
+
+    var vConsole = new VConsole();
+
+    var audio = document.getElementById('audio')
+
+    /* document.addEventListener('visibilitychange', function(e) {
+      var pageVisible = document.visibilityState;
+      var pageHidden = document.hidden;
+      console.log('---------- pageStateChange ----------');
+      console.log('[ visible ] ', pageVisible);
+      console.log('[ hidden ] ', pageHidden);
+      console.log(e);
+
+      if ( pageVisible === 'hidden' ) {
+        audio.pause();
+      } else {
+          audio.play();
+      }
+    }); */
+var hidden, visibilitychange;
+// Opera 12.10 and Firefox 18 and later support
+if (typeof document.hidden !== 'undefined') {
+    hidden = 'hidden';
+    visibilitychange = 'visibilitychange';
+} else if (typeof document.msHidden !== 'undefined') {
+    hidden = 'msHidden';
+    visibilitychange = 'msvisibilitychange';
+}
+if (typeof document.webkitHidden !== 'undefined') {
+    hidden = 'webkitHidden';
+    visibilitychange = 'webkitvisibilitychange';
+}
+var audio = document.getElementById('audio');
+// 如果页面是隐藏状态 暂停音乐
+// 如果页面时展示状态 播放音乐
+function handleVisibilityChange() {
+    if (document[hidden]) {
+    audio.pause();
+    console.log('audio pause');
+    } else {
+    audio.play();
+    console.log('audio play');
+    }
+}
+if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
+    console.log('当前浏览器不支持');
+} else {
+    document.addEventListener(visibilitychange, handleVisibilityChange, false);
+}
+
+audio.addEventListener('pause', function() {
+    document.title = 'Paused';
+}, false)
+audio.addEventListener('play', function() {
+    document.title = 'Playing';
+}, false)
+}
+</script>
+
+</html>

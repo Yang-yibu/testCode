@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VUE TEST</title>
+  <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">{{ fullName }}</div>
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        firstName: 'Foo',
+        lastName: 'Bar'
+      },
+      computed: {
+        /* fullName: function() {
+          return this.firstName + ' ' + this.lastName
+        } */
+
+        fullName: {
+          get: function() {
+            return this.firstName + ' ' + this.lastName
+          },
+          set: function(newVal, oldVal) {
+            console.log('val', newVal, oldVal);
+            var names = newVal.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[names.length - 1]
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

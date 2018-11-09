@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUE TEST</title>
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-bind:title="msg.isMsg"
+         v-bind:data-title="message"></div>
+
+    <span>{{ message }}</span>
+
+    <span v-if="1">hahhaha</span>
+
+    <ol>
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+        </todo-item>
+    </ol>
+
+    <div v-html>渲染HTMl: {{ rawHtml }}</div>
+
+    <div v-bind:id="dynamicId">绑定属性</div>
+
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+
+
+    class 属性和 style 属性的绑定
+    <br>-------------------------
+
+    <div class="static"
+         v-bind:class="[isActive? className: 'a', hasError? 'bb': 'cc', 'aa']"
+    >
+        class
+    </div>
+    <div v-bind:style="{ color: activeColor, 'font-size': fontSize + 'px' }">style</div>
+    <div v-bind:style="style">style1</div>
+
+    <br>条件渲染
+    <br>-------------------------
+    <template v-if=" 'ok' ">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+
+    <template v-if="loginType === 'userName'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" >
+    </template>
+    <br>
+    <button @click="toggleType">Toggle login type</button>
+
+
+    <h2>列表渲染</h2>
+    <ul class="example-1">
+        <li v-for="(item, index) in items">
+            {{ index + '：' + item.message }} - {{ index }} - {{ item }}
+        </li>
+    </ul>
+    <ul class="example-1">
+        <li v-for="item of items1">
+            {{ item }}
+        </li>
+    </ul>
+    data
+    <ul class="example-1">
+        <li v-for="item of data.items">
+            {{ item }}
+        </li>
+    </ul>
+
+
+    <!-- `greet` 是在下面定义的方法名 -->
+    <button v-on:click="greet" data-id="a">Greet</button>
+
+    <button v-on:click="say( name, $event )">Say hi</button>
+
+    <input v-model.number="age" type="number">
+</div>
+
+<div></div>
+
+----------------------------
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<div id="watch-example" style="position: relative">
+    <p>
+        Ask a yes/no question:
+        <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+
+
+
+
+<script src="./index.js"></script>
+</body>
+</html>

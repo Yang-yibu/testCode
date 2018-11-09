@@ -40,7 +40,7 @@
       <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
         {{ model.name }}
         <span v-if="isFolder">[ {{ open ? '-' : '+' }} ]</span>
-        <span v-if="model.children || index !== undefined" @click.stop="del(index)">[ X ]</span>
+        <span v-if=" model.children && model.children.length || index !== undefined" @click.stop="del(index)">[ X ]</span>
       </div>
       <ul v-show="open" v-if="isFolder">
         <item class="item" v-for="(model, index) in model.children" :key="index" :model="model" :index="index">
